@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Quota Arcade · A little room for big ideas</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./"
+        ><span class="logo">Q</span> quota arcade<span class="beta"
+          >LOCAL-FIRST</span
+        ></a
+      >
+      <nav>
+        <button id="mode">My meters</button
+        ><button id="export">Export backup</button
+        ><button id="import-trigger">Import</button
+        ><input
+          id="import"
+          type="file"
+          accept=".json"
+          hidden
+          aria-label="Import backup"
+        />
+      </nav>
+    </header>
+    <main>
+      <div class="banner" id="banner"></div>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">YOUR IDEAS NEED A LITTLE FUEL</p>
+          <h1>Big thoughts.<br /><span>Little energy bars.</span></h1>
+          <p class="intro">
+            A cozy control room for the ChatGPT allowances you track.<br />Catch
+            your next reset. Keep a little room for a happy accident.
+          </p>
+          <button class="primary" id="add">＋ Add an energy meter</button>
+        </div>
+        <div class="mascot" aria-hidden="true">
+          <div class="spark s1">✦</div>
+          <div class="spark s2">✧</div>
+          <div class="antenna"></div>
+          <div class="robot">
+            <div class="eyes"><i></i><i></i></div>
+            <div class="smile"></div>
+            <div class="cheek a"></div>
+            <div class="cheek b"></div>
+          </div>
+          <div class="feet"><i></i><i></i></div>
+          <span class="sticker">recharge your curiosity!</span>
+        </div>
+      </section>
+      <section>
+        <div class="section-title">
+          <h2>Your fuel shelf <span id="count"></span></h2>
+          <span>Stored on this browser ♡</span>
+        </div>
+        <div id="meters" class="meters"></div>
+      </section>
+      <section class="bottom">
+        <article>
+          <p class="eyebrow">A NOTE FROM THE CONTROL ROOM</p>
+          <h2>Honest numbers. Happier planning.</h2>
+          <p>
+            These are your observations and manual logs, not live account
+            readings. If a reset time passes, a meter asks for a fresh
+            observation instead of claiming your allowance is full.
+          </p>
+          <a href="https://chatgpt.com/" target="_blank" rel="noopener"
+            >Check ChatGPT ↗</a
+          >
+        </article>
+        <article>
+          <p class="eyebrow">THE LITTLE PRINT</p>
+          <p>
+            No password. No API key. No conversation collection. Data stays in
+            this browser until you export it. Demo numbers are fictional, not
+            plan limits. This independent project is not affiliated with OpenAI.
+          </p>
+        </article>
+      </section>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </main>
+    <footer>Made for curious humans · Count the fuel, keep the fun.</footer>
+    <dialog id="editor">
+      <form id="form">
+        <button type="button" id="close" class="close" aria-label="Close">
+          ×
+        </button>
+        <p class="eyebrow">BOTTLE A LITTLE ENERGY</p>
+        <h2 id="form-title">New energy meter</h2>
+        <label
+          >Name<input
+            id="name"
+            required
+            maxlength="60"
+            placeholder="e.g. ChatGPT thinking"
+        /></label>
+        <div class="row">
+          <label
+            >Unit<select id="unit">
+              <option value="messages">Messages</option>
+              <option value="images">Images</option>
+              <option value="percent">Percentage points</option>
+              <option value="credits">Credits</option>
+            </select></label
+          ><label
+            >Total allowance<input
+              id="limit"
+              type="number"
+              min="0.01"
+              max="1000000000"
+              step="any"
+              required
+              value="100"
+          /></label>
+        </div>
+        <label
+          >Used at this observation<input
+            id="used"
+            type="number"
+            min="0"
+            step="any"
+            required
+            value="0" /></label
+        ><label
+          >Next reset shown in your account (local time)<input
+            id="reset"
+            type="datetime-local"
+            required
+        /></label>
+        <p class="hint">
+          Copy values from your account. Saving starts a fresh observation and
+          replaces this meter's earlier logs; export a backup first if you need
+          them.
+        </p>
+        <button class="primary" type="submit">Save my meter ✦</button>
+        <p id="form-error" role="alert"></p>
+      </form>
+    </dialog>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
